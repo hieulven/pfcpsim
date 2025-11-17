@@ -17,8 +17,8 @@ func TestIsExpectedResponseType(t *testing.T) {
 
 	tests := []struct {
 		name         string
-		requestType  message.MessageType
-		responseType message.MessageType
+		requestType  uint8
+		responseType uint8
 		expected     bool
 	}{
 		{

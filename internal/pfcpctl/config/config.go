@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/omec-project/pfcpsim/logger"
+	"github.com/urfave/cli/v3"
 )
 
 const (
@@ -34,7 +35,7 @@ func GetGlobalFlags() []cli.Flag {
 		Aliases: []string{"s"},
 		Value:   defaultgRPCServerAddress,
 		Usage:   "gRPC Server IP/Host and port",
-		EnvVars: []string{"PFCPSIM_SERVER"},
+		// EnvVars: []string{"PFCPSIM_SERVER"},
 		},
 	}
 }

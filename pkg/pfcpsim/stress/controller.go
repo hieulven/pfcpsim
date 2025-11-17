@@ -6,6 +6,7 @@ package stress
 import (
 	"context"
 	"fmt"
+	"strings"
 	"sync"
 	"time"
 
@@ -262,7 +263,7 @@ func (sc *StressController) executeTest(done chan struct{}) {
 	defer close(done)
 
 	startTime := time.Now()
-	endTime := startTime.Add(sc.config.Duration)
+	// endTime := startTime.Add(sc.config.Duration)
 
 	logger.PfcpsimLog.Infoln("Test execution started")
 
@@ -510,6 +511,9 @@ func (sc *StressController) deleteSessions() {
 
 // GetActiveSessionCount returns the number of currently active sessions
 func (sc *StressController) GetActiveSessionCount() int {
+    if sc.workers == nil {
+        return 0
+    }
 	count := 0
 	for _, worker := range sc.workers {
 		count += worker.GetActiveSessionCount()

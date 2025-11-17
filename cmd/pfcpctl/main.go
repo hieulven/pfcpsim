@@ -9,7 +9,6 @@ import (
 	"os"
 	"path"
 
-	"github.com/jessevdk/go-flags"
 	"github.com/omec-project/pfcpsim/internal/pfcpctl/commands"
 	"github.com/omec-project/pfcpsim/internal/pfcpctl/config"
 	"github.com/urfave/cli/v3"

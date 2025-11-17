@@ -206,12 +206,19 @@ func (w *Worker) nextUEAddress() net.IP {
 	next := make(net.IP, len(w.lastUEAddr))
 	copy(next, w.lastUEAddr)
 
+	overflow := true
 	for i := len(next) - 1; i >= 0; i-- {
 		next[i]++
 		if next[i] != 0 {
+			overflow = false
 			break
 		}
 	}
+
+    if overflow {
+        logger.PfcpsimLog.Warnln("UE address pool exhausted, wrapping around")
+        // Reset to start of pool or handle as needed
+    }
 
 	w.lastUEAddr = next
 	return next

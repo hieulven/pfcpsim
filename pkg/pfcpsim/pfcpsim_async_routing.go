@@ -160,17 +160,22 @@ func (c *AsyncPFCPClient) routeResponse(msg message.Message) {
 	}
 
 	// Close the response channel to signal completion
+	defer func() {
+		if r := recover(); r != nil {
+			logger.PfcpsimLog.Debugf("Channel already closed for sequence %d", seqNum)
+		}
+	}()
 	close(pending.ResponseCh)
 }
 
 // isExpectedResponseType checks if the response type matches the request type.
 // PFCP request/response pairs have predictable relationships.
 func (c *AsyncPFCPClient) isExpectedResponseType(
-	requestType message.MessageType,
-	responseType message.MessageType,
+	requestType uint8,
+	responseType uint8,
 ) bool {
 	// Map request types to expected response types
-	expectedResponses := map[message.MessageType]message.MessageType{
+	expectedResponses := map[uint8]uint8{
 		message.MsgTypeAssociationSetupRequest:       message.MsgTypeAssociationSetupResponse,
 		message.MsgTypeAssociationReleaseRequest:     message.MsgTypeAssociationReleaseResponse,
 		message.MsgTypeSessionEstablishmentRequest:   message.MsgTypeSessionEstablishmentResponse,

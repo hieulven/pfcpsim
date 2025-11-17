@@ -177,7 +177,7 @@ func (c *AsyncPFCPClient) GetOldestPendingRequest() *PendingRequestInfo {
 // PendingRequestInfo provides read-only info about a pending request
 type PendingRequestInfo struct {
 	SeqNum      uint32
-	MessageType message.MessageType
+	MessageType uint8
 	Age         time.Duration
 	SentAt      time.Time
 }

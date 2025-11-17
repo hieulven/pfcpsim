@@ -20,7 +20,7 @@ type PendingRequest struct {
 	SeqNum uint32
 
 	// MessageType stores the type of request sent (for validation)
-	MessageType message.MessageType
+	MessageType uint8
 
 	// SentAt records when the request was sent (for latency calculation)
 	SentAt time.Time
