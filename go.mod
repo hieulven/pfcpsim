@@ -1,18 +1,20 @@
 module github.com/omec-project/pfcpsim
 
-go 1.23
+go 1.23.0
 
 require (
 	github.com/c-robinson/iplib v1.0.8
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pborman/getopt/v2 v2.1.0
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 	github.com/wmnsk/go-pfcp v0.0.24
 	go.uber.org/zap v1.27.0
-	golang.org/x/time v0.8.0  // ADD THIS LINE
+	golang.org/x/time v0.8.0 // ADD THIS LINE
 	google.golang.org/grpc v1.72.2
 	google.golang.org/protobuf v1.36.6
 )
+
+require github.com/urfave/cli/v3 v3.6.1
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
