@@ -9,6 +9,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+	"strings"
 )
 
 // Metrics collects performance statistics for the stress test
@@ -251,9 +252,9 @@ func (m *Metrics) GetSnapshot() MetricsSnapshot {
 func (m *Metrics) PrintReport() {
 	snapshot := m.GetSnapshot()
 
-	fmt.Println("\n" + "="*80)
+	fmt.Println("\n" + strings.Repeat("=", 80))
 	fmt.Println("STRESS TEST RESULTS")
-	fmt.Println("="*80)
+	fmt.Println(strings.Repeat("=", 80))
 
 	// Summary
 	fmt.Printf("\nDuration: %v\n", snapshot.ElapsedTime.Round(time.Second))
@@ -294,7 +295,7 @@ func (m *Metrics) PrintReport() {
 		printLatencyStats("Delete", snapshot.DeleteLatency)
 	}
 
-	fmt.Println("="*80 + "\n")
+	fmt.Println(strings.Repeat("=", 80) + "\n")
 }
 
 func printLatencyStats(name string, stats LatencyStats) {

@@ -94,9 +94,9 @@ func (sc *StressController) Run() error {
 	sc.isRunning = true
 	sc.stateMutex.Unlock()
 
-	logger.PfcpsimLog.Infoln("="*80)
+	logger.PfcpsimLog.Infoln(strings.Repeat("=", 80))
 	logger.PfcpsimLog.Infoln("STARTING STRESS TEST")
-	logger.PfcpsimLog.Infoln("="*80)
+	logger.PfcpsimLog.Infoln(strings.Repeat("=", 80))
 	logger.PfcpsimLog.Infof("Configuration:")
 	logger.PfcpsimLog.Infof("  Target TPS: %d", sc.config.TPS)
 	logger.PfcpsimLog.Infof("  Duration: %v", sc.config.Duration)
@@ -104,7 +104,7 @@ func (sc *StressController) Run() error {
 	logger.PfcpsimLog.Infof("  Modifications per Session: %d", sc.config.ModificationsPerSession)
 	logger.PfcpsimLog.Infof("  Workers: %d", sc.config.NumWorkers)
 	logger.PfcpsimLog.Infof("  Ramp-up Time: %v", sc.config.RampUpTime)
-	logger.PfcpsimLog.Infoln("="*80)
+	logger.PfcpsimLog.Infoln(strings.Repeat("=", 80))
 
 	// Start workers
 	sc.startWorkers()

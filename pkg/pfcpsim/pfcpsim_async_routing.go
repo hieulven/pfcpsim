@@ -4,6 +4,7 @@
 package pfcpsim
 
 import (
+	"time"
 	"github.com/omec-project/pfcpsim/logger"
 	"github.com/wmnsk/go-pfcp/message"
 )
@@ -77,7 +78,7 @@ func (c *AsyncPFCPClient) routeMessage(msg message.Message) {
 			return
 		}
 		// If not handled, fall through to route as response
-		fallthrough
+		c.routeResponse(msg)
 
 	default:
 		// Route to pending request
@@ -130,7 +131,7 @@ func (c *AsyncPFCPClient) routeResponse(msg message.Message) {
 	}
 
 	// Calculate latency
-	latency := pending.SentAt.Since(pending.SentAt)
+	latency := time.Since(pending.SentAt)
 
 	// Update statistics
 	c.stats.recordLatency(latency)
@@ -202,18 +203,18 @@ func (c *AsyncPFCPClient) StartAsyncReceiver() {
 
 // ConnectN4Async is the async version of ConnectN4 that uses the async receiver.
 // It replaces the original ConnectN4 for async clients.
-func (c *AsyncPFCPClient) ConnectN4Async(remoteAddr string) error {
-	// Use the parent's ConnectN4 to establish connection
-	// but don't start the old receiver
-	err := c.PFCPClient.ConnectN4(remoteAddr)
-	if err != nil {
-		return err
-	}
+// func (c *AsyncPFCPClient) ConnectN4Async(remoteAddr string) error {
+// 	// Use the parent's ConnectN4 to establish connection
+// 	// but don't start the old receiver
+// 	err := c.PFCPClient.ConnectN4(remoteAddr)
+// 	if err != nil {
+// 		return err
+// 	}
 
-	// The parent ConnectN4 starts receiveFromN4(), but we need to stop it
-	// and start our async version instead.
-	// Since we can't easily stop the parent's receiver, we'll override
-	// the connection method completely.
+// 	// The parent ConnectN4 starts receiveFromN4(), but we need to stop it
+// 	// and start our async version instead.
+// 	// Since we can't easily stop the parent's receiver, we'll override
+// 	// the connection method completely.
 
-	return nil
-}
+// 	return nil
+// }

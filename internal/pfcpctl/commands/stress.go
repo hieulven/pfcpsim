@@ -4,6 +4,7 @@
 package commands
 
 import (
+	"strings"
 	"context"
 	"fmt"
 	"os"
@@ -279,9 +280,9 @@ func parseStressConfig(c *cli.Command) (*stress.StressConfig, error) {
 // printConfiguration displays the test configuration
 func printConfiguration(config *stress.StressConfig) {
 	fmt.Println()
-	fmt.Println("=" * 80)
+	fmt.Println(strings.Repeat("=", 80))
 	fmt.Println("STRESS TEST CONFIGURATION")
-	fmt.Println("=" * 80)
+	fmt.Println(strings.Repeat("=", 80))
 	fmt.Printf("Rate Control:\n")
 	fmt.Printf("  Target TPS:           %d\n", config.TPS)
 	fmt.Printf("  Test Duration:        %v\n", config.Duration)
@@ -309,7 +310,7 @@ func printConfiguration(config *stress.StressConfig) {
 	fmt.Printf("  Worker Threads:       %d\n", config.NumWorkers)
 	fmt.Printf("  Request Timeout:      %v\n", config.RequestTimeout)
 	fmt.Printf("  App Filters:          %d configured\n", len(config.AppFilters))
-	fmt.Println("=" * 80)
+	fmt.Println(strings.Repeat("=", 80))
 	fmt.Println()
 }
 

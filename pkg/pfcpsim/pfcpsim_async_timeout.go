@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/omec-project/pfcpsim/logger"
+	"github.com/wmnsk/go-pfcp/message"
 )
 
 // TimeoutManager tracks and manages request timeouts
